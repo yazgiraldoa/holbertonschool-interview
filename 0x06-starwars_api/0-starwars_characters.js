@@ -15,22 +15,21 @@ request.get(url, function (error, response, body) {
   arr.forEach(async function (person) {
     try {
       const result = await makeRequest(person);
-      const dic = JSON.parse(result)
+      const dic = JSON.parse(result);
       console.log(dic.name);
     } catch (error) {
       console.error(error);
     }
-  })
+  });
 });
 
-
-function makeRequest(path) {
-    return new Promise(function (resolve, reject) {
-        request.get(path, function (error, response, body) {
-            if (error) {
-              reject(error);
-            }
-            resolve(body)
-        });
+function makeRequest (path) {
+  return new Promise(function (resolve, reject) {
+    request.get(path, function (error, response, body) {
+      if (error) {
+        reject(error);
+      }
+      resolve(body);
     });
+  });
 }
